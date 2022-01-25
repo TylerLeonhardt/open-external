@@ -10,12 +10,13 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "open-external" is now active!');
 
+	const recents = context.globalState.get<vscode.QuickPickItem[]>('recent-urls') ?? [];
+
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	context.subscriptions.push(vscode.commands.registerCommand('open-external.openExternal', () => {
 
-		const recents = context.globalState.get<vscode.QuickPickItem[]>('recent-urls') ?? [];
 		const qp = vscode.window.createQuickPick();
 		qp.matchOnDescription = true;
 		qp.items = [
@@ -29,7 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
 		];
 		qp.onDidChangeValue((e: string) => {
 			if (e.length) {
-				qp.items[qp.items.length - 1].description = e;
+				qp.items.find(i => i.label === 'Use custom value...')!.description = e;
 				qp.items = qp.items;
 			}
 		});
@@ -71,7 +72,10 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			// fix up our recents
-			recents.splice(recents.findIndex(item => item.label === chosenItem.label), 1);
+			const indexToRemove = recents.findIndex(item => item.label === chosenItem.label);
+			if (indexToRemove > -1) {
+				recents.splice(indexToRemove, 1);
+			}
 			recents.unshift(chosenItem);
 			if (recents.length > 10) {
 				recents.splice(10, recents.length - 10);

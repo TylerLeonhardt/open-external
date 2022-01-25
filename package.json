@@ -6,7 +6,7 @@
   "repository": {
     "url": "https://github.com/TylerLeonhardt/open-external"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "engines": {
     "vscode": "^1.61.0"
