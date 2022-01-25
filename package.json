@@ -3,7 +3,10 @@
   "displayName": "Open External",
   "description": "Opens a URL",
   "publisher": "TylerLeonhardt",
-  "version": "0.0.3",
+  "repository": {
+    "url": "https://github.com/TylerLeonhardt/open-external"
+  },
+  "version": "0.0.5",
   "license": "MIT",
   "engines": {
     "vscode": "^1.61.0"
@@ -31,7 +34,7 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "yarn run package",
+    "vscode:prepublish": "yarn run package && yarn run package-web",
     "compile": "webpack",
     "watch": "webpack --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
