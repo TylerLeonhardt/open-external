@@ -71,7 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			// fix up our recents
-			recents.splice(recents.indexOf(chosenItem), 1);
+			recents.splice(recents.findIndex(item => item.label === chosenItem.label), 1);
 			recents.unshift(chosenItem);
 			if (recents.length > 10) {
 				recents.splice(10, recents.length - 10);
