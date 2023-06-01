@@ -14,3 +14,4 @@ npx vscode-test-web --browserType=webkit --extensionDevelopmentPath=/path to/ope
 ```
 
 Hello
+Goodbye
