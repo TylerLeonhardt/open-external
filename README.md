@@ -12,3 +12,5 @@ Now you can run using vscode-test-web:
 ```
 npx vscode-test-web --browserType=webkit --extensionDevelopmentPath=/path to/open-external
 ```
+
+Hello
